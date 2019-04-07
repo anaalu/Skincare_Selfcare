@@ -1,0 +1,22 @@
+{
+  "name": "skincare-project",
+  "version": "1.0.0",
+  "description": "The skincare tracker for your selfcare.",
+  "main": "index.js",
+  "author": "anaalu",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf ./node_modules/",
+    "configure": "yarn install",
+    "start": "node src/skincare_selfcare.js",
+    "test": "mocha -c --timeout 10000 -R mochawesome",
+    "testcover": "mocha -c --timeout 10000",
+    "cover": "nyc -r json-summary --reporter=lcov yarn run testcover"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mocha": "^6.0.2",
+    "mochawesome": "^3.1.1",
+    "pg": "^7.9.0"
+  }
+}
