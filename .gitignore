@@ -13,3 +13,4 @@ coverage/
 yarn.lock
 yarn-error.log
 .env
+junk.js
