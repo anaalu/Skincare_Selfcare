@@ -22,6 +22,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/login', (req, res) => res.render('pages/login'))
+  .get('/signup', (req, res) => res.render('pages/signup'))
   .get('/db', async (req, res) => {
     try {
       const results = await getUsers();
