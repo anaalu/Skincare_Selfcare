@@ -72,6 +72,26 @@ html, body {
   width: 100%;
 }
 
+/* ----------- Homepage styling ----------- */
+#greeting-container {
+  background: rgba(54,54,54,0.3);
+  border-radius: 7px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px; /*half the the size of container height*/
+  margin-left: -500px; /*half the the size of container width*/
+  height: 300px;
+  width: 1000px;
+  padding: 15px;
+  z-index: 2
+  font-family: Verdana, sans-serif;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  line-height: 110%;
+}
+
 /* ----------- Login form styling ----------- */
 
 .login-signup-form-container {
