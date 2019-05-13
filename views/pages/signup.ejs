@@ -1,25 +1,66 @@
 <!DOCTYPE html>
+
 <html>
+
+
 <head>
   <% include ../partials/header.ejs %>
 </head>
 
 <body>
 
-  <% include ../partials/nav.ejs %>
+<% include ../partials/nav.ejs %>
 
-<div class="login-signup-form-container">
-	<div class="signup">
-			<!-- <p class="signup-label" align="left"><b>Email</b></p> -->
-			<input type="text" placeholder="Enter Email" name="email"><br>
-			<!-- <p class="signup-label" align="left"><b>Enter Password</b></p> -->
-			<input type="password" placeholder="Enter Password" name="password"><br>
-			<!-- <p class="signup-label" align="left"><b>Repeat Password</b></p> -->
-			<input type="password" placeholder="Repeat Password" name="repeat-password">
-			<input type="button" value="Sign up">
-			<p class="sign-up-redirect">Already have an account? &nbsp;<a class="sign-up-link" href="/login">Log in</a></p>
-	</div>
-</div>
+<form method="post" action="/signup">
+  <div class="login-signup-form-container">
+    <div class="center">
+    	<input type="text" placeholder="Enter Email" name="email" onchange="validateEmail()"><br>
+      <p class="form-error-alert" id="email-alert">The email entered is not valid.</p>
+    	<input type="password" placeholder="Enter Password" name="password" onchange="validatePassword()"><br>
+      <p class="form-error-alert" id="password-alert">Please enter a password longer than 6 characters.</p>
+    	<input type="password" placeholder="Repeat Password" name="repeat-password" onchange="validateRepeatPassword()">
+      <p class="form-error-alert" id="repeat-password-alert">Passwords do not match.</p>
+    	<input type="submit" value="Sign up">
+    	<p class="sign-up-redirect">Already have an account? &nbsp;<a class="sign-up-link" href="/login">Log in</a></p>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+  validateEmail = () => {
+    var email = document.getElementsByName('email')[0].value;
+    var alert = document.getElementById("email-alert");
+
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      alert.style.display = "none"; 
+    } else {
+      alert.style.display = "block";
+    }
+  }
+
+  validatePassword = () => {
+    var pass = document.getElementsByName("password")[0].value;
+    var alert = document.getElementById("password-alert");
+
+    if (pass.length < 7) {
+      alert.style.display = "block";
+    } else { 
+      alert.style.display = "none";
+    }
+  }
+
+  validateRepeatPassword = () => {
+    var pass = document.getElementsByName("password")[0].value;
+    var passRpt = document.getElementsByName("repeat-password")[0].value;
+    var alert = document.getElementById("repeat-password-alert");
+
+    if (pass !== passRpt) {
+      alert.style.display = "block";
+    } else {
+      alert.style.display = "none";
+    }
+  }
+</script>
 
 </body>
 

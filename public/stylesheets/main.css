@@ -77,17 +77,19 @@ html, body {
 .login-signup-form-container {
   background: rgba(54,54,54,0.2);
   border-radius: 7px;
-  position: absolute;
-  top: calc(50% - 75px);
-  left: calc(50% - 140px);
-  height: 207px;
-  width: 260px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -133px; /*half the the size of container height*/
+  margin-left: -180px; /*half the the size of container width*/
+  height: 265px;
+  width: 360px;
   padding: 15px;
   z-index: 2;
 }
 
 .login-signup-form-container input[type=text]{
-  width: 250px;
+  width: 345px;
   height: 30px;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.6);
@@ -100,7 +102,7 @@ html, body {
 }
 
 .login-signup-form-container input[type=password]{
-  width: 250px;
+  width: 345px;
   height: 30px;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.6);
@@ -113,8 +115,8 @@ html, body {
   margin-top: 10px;
 }
 
-.login-signup-form-container input[type=button]{
-  width: 260px;
+.login-signup-form-container input[type=submit]{
+  width: 345px;
   height: 35px;
   background: #fff;
   border: 1px solid #fff;
@@ -128,11 +130,19 @@ html, body {
   margin-top: 10px;
 }
 
-.login-signup-form-container input[type=button]:hover{
+.center {
+  margin: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-signup-form-container input[type=submit]:hover{
   opacity: 0.8;
 }
 
-.login-signup-form-container input[type=button]:active{
+.login-signup-form-container input[type=submit]:active{
   opacity: 0.6;
 }
 
@@ -146,7 +156,7 @@ html, body {
   border: 1px solid rgba(255,255,255,0.9);
 }
 
-.login-signup-form-container input[type=button]:focus{
+.login-signup-form-container input[type=submit]:focus{
   outline: none;
 }
 
@@ -186,47 +196,37 @@ html, body {
   color: white;
 }
 
-.signup-label {
-  padding: 1px;
+.form-error-alert {
+  margin: 0px;
+  margin-left: 4px;
+  padding: 0px;
+  text-align: left;
+  color: firebrick;
+  display: none;
 }
 
-
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */ 
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-  }
-}
-
-.jumbotron {
-  background: #532F8C;
+.closebtn {
+  margin-left: 15px;
   color: white;
-  padding-bottom: 80px; }
-  .jumbotron .btn-primary {
-    background: #845ac7;
-    border-color: #845ac7; }
-    .jumbotron .btn-primary:hover {
-      background: #7646c1; }
-  .jumbotron p {
-    color: #d9ccee;
-    max-width: 75%;
-    margin: 1em auto 2em; }
-  .navbar + .jumbotron {
-    margin-top: -20px; }
-  .jumbotron .lang-logo {
-    display: block;
-    background: #B01302;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    border: 2px solid white; }
-    .jumbotron .lang-logo img {
-      max-width: 100%; }
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
+.closebtn:hover {
+  color: black;
+}
+
+.center-text {
+  text-align: center;
+}
+
+#ascii-face {
+  padding: 0px;
+  margin: 0px;
+  font-size: 50px;
+  font-weight: bold;
+}
