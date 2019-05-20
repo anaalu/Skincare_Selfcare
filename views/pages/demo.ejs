@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.6/lib/draggable.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/sortable.js"></script>
+</head>
+<body>
+  <% include ../partials/vertical-nav.ejs %>
+
+<div style="margin-left: 85px; padding: 1px; height: 30px; width: calc(100% - 85px);">
+  <div class="inline" style="font-size: 18px">Skincare routine</div>
+  <div style="float: right; margin-right: 40%">
+    <form id="select-date-form" action="/demo">
+      Select day: <input type="date" name="day">
+      <input type="submit">
+    </form>
+  </div>
+</div>
+
+<div id="table">
+  <ul class="column dropzone">
+    <h2>Product List</h2>
+    <li class="item">DRAG</li>
+    <li class="item">AND</li>
+    <li class="item">DROP</li>
+    <li class="itme">US</li>
+  </ul>
+  <ul class="column dropzone">
+    <h2>AM Routine</h2>
+    <li class="item">HERE</li>
+    <li class="item">OR</li>
+  </ul>
+  <ul class="column dropzone">
+    <h2>PM Routine</h2>
+    <li class="item">HERE TOO</li>
+  </ul>
+  <ul class="column">
+    <h2>Notes</h2>
+    <p>This will be demo page for routine tracking. Users will be able to drag and drop products into respective routines and track observations in the notes section.</p>
+  </ul>
+</div>
+
+<script type="text/javascript">
+const sortable = new Sortable.default(document.querySelectorAll('.dropzone'), {
+  draggable: '.item',
+  copy: true
+});
+
+</script>
+
+</body>
+</html>

@@ -49,6 +49,7 @@ app.use(flash());
 app.get('/', (req, res) => res.render('pages/index'));
 app.get('/login', (req, res) => res.render('pages/login'));
 app.get('/signup', (req, res) => res.render('pages/signup'));
+app.get('/demo', (req, res) => res.render('pages/demo'));
 app.get('/temp', (req, res) => {
   var face = cool();
   res.render('pages/temp', { face: face });
