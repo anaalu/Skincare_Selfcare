@@ -51,8 +51,27 @@ h4 {
   background-color: white;
   float: left;
   margin-right: 5px;
-  width: calc((100% - 180px) / 4);
+  width: calc((100% - 20px) / 4);
   height: 100%;
+  overflow: auto;
+}
+
+.item {
+  width: calc(100% - 20px);
+  background-color: cornflowerblue;
+  padding: 10px;
+  margin: 5px;
+  width: calc(100% - 30px);
+  color: white;
+}
+
+.dropzone {
+  height: calc(100% - 55px);
+}
+
+#title {
+  margin: 5px;
+  font-weight: bold;
 }
 
 .inline {
