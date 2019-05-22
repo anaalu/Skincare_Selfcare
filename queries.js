@@ -4,17 +4,7 @@ const pool = new Pool({
   ssl: true
 });
 
-pool.connect()
-
-// const { Pool, Client } = require('pg')
-// const pool = new Client({
-//   user: 'ana',
-//   host: 'localhost',
-//   database: 'api',
-//   password: 'pigbunny',
-//   port: 5432,
-// })
-// pool.connect()
+pool.connect();
 
 const getUsers = (request, response) => {
   pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
