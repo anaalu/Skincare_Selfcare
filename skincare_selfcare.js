@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
         ssl: true
     });
     app.set('trust proxy', 1);
-    sess.cookie.secure = true;
+    sess.secure = true;
 }
 
 pool.connect();
