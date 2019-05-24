@@ -11,7 +11,7 @@ const bcrypt        = require('bcrypt');
 const uuid          = require('uuid');
 const flash         = require('connect-flash');
 
-const User          = require('./src/users');
+const User          = require('./routes/users');
 const { Pool }      = require('pg');
 const PORT          = process.env.PORT || 5000;
 const app           = express();
