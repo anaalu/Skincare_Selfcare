@@ -2,7 +2,7 @@
   "name": "skincare-project",
   "version": "1.0.0",
   "description": "The skincare tracker for your selfcare.",
-  "main": "index.js",
+  "main": "skincare_selfcare.js",
   "author": "anaalu",
   "license": "MIT",
   "scripts": {
@@ -14,16 +14,20 @@
     "cover": "nyc -r json-summary --reporter=lcov yarn run testcover"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
-    "cookie-session": "^1.3.3",
     "cool-ascii-faces": "^1.3.4",
     "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "mocha": "^6.0.2",
     "mochawesome": "^3.1.1",
-    "pg": "^7.9.0"
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.9.0",
+    "uuid": "^3.3.2"
   }
 }
