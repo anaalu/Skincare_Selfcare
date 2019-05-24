@@ -1,4 +1,11 @@
 <div class="alert">
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  <strong>Error:</strong> error message.
+  <p id="alert-inner-message" style="padding: 0px; margin: 0px;"><%= message %></p>
 </div>
+
+<script type="text/javascript">
+  if (document.getElementById('alert-inner-message').innerHTML !== "") {
+    var alertBox = document.getElementsByClassName('alert')[0];
+    alertBox.style.display = "block";
+  }
+</script>

@@ -8,9 +8,9 @@
 <body>
 
 <% include ../partials/nav.ejs %>
+<% include ../partials/alert.ejs %>
 
-<!-- TODO: add validation for non-empty fields and validate when button is clicked before sending POST request -->
-<form method="post" action="/signup">
+<form method="post" action="/signup" onsubmit="return validateForm()">
   <div class="login-signup-form-container">
     <div class="center">
     	<input type="text" placeholder="Enter Email" name="email" onchange="validateEmail()"><br>

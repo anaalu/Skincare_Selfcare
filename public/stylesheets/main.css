@@ -225,6 +225,20 @@ html, body {
   display: none;
 }
 
+/* ------------ Alert Styling ------------ */
+.alert {
+  position: fixed;
+  left: 50%;
+  margin-left: -350px;
+  margin-top: 20px;
+  width: 700px;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  font-family: Verdana, sans-serif;
+  display: none;
+}
+
 .closebtn {
   margin-left: 15px;
   color: white;

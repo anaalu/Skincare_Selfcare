@@ -61,8 +61,17 @@ app.use(session(sess));
 app.use(flash());
 
 app.get('/', (req, res) => res.render('pages/index'));
-app.get('/login', (req, res) => res.render('pages/login'));
-app.get('/signup', (req, res) => res.render('pages/signup'));
+
+app.get('/login', (req, res) => {
+  var message = "";
+  res.render('pages/login', { message: message });
+});
+
+app.get('/signup', (req, res) => {
+  var message = "";
+  res.render('pages/signup', { message: message });
+});
+
 app.get('/demo', (req, res) => res.render('pages/demo'));
 app.get('/temp', (req, res) => {
   var face = cool();
@@ -73,8 +82,8 @@ app.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) { return next(err); }
     if (!user) {
-      // TODO: send error message to UI
-      return res.redirect('/login');
+      var errorMsg = "User credentials are invalid. Please try again.";
+      return res.render('pages/login', { message: errorMsg });
     }
     req.logIn(user, (err) => {
       if (err) { return next(err); }
@@ -88,8 +97,8 @@ app.post('/signup', async (req, res) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     pool.query('SELECT id FROM users WHERE email=$1', [req.body.email], (err, result) => {
       if (result.rows[0]) {
-        // TODO: log error message and send to ejs
-        res.redirect('/signup');
+        var errorMsg = "Email address has already been used. Please use another email."
+        res.render('pages/signup', { message: errorMsg });
       } else {
         pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [req.body.email, hash], (err, result) => {
           if (err) {
