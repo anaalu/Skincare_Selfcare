@@ -59,5 +59,6 @@ var setAlertMessageAndDisplay = (message) => {
 
   alertMsg.innerHTML = message;
   alertBox.style.display = "block";
+  setTimeout(() => { alertBox.style.display = "none"; }, 3500);
   return false;
 }

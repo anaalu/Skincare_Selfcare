@@ -3,9 +3,10 @@
   <p id="alert-inner-message" style="padding: 0px; margin: 0px;"><%= message %></p>
 </div>
 
-<script type="text/javascript">
+<script type="text/javascript">  
   if (document.getElementById('alert-inner-message').innerHTML !== "") {
     var alertBox = document.getElementsByClassName('alert')[0];
     alertBox.style.display = "block";
+    setTimeout(() => { alertBox.style.display = "none"; }, 3500);    
   }
 </script>
