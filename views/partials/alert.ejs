@@ -1,12 +1,19 @@
 <div class="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   <p id="alert-inner-message" style="padding: 0px; margin: 0px;"><%= message %></p>
 </div>
 
 <script type="text/javascript">  
-  if (document.getElementById('alert-inner-message').innerHTML !== "") {
-    var alertBox = document.getElementsByClassName('alert')[0];
+  var alertMsg = document.getElementById('alert-inner-message').innerHTML;
+  var alertBox = document.getElementsByClassName('alert')[0];
+
+  if (alertMsg === "success") {
+    document.getElementById('alert-inner-message').innerHTML = "Sign up was successful!"
+    alertBox.style.backgroundColor = "forestgreen";
     alertBox.style.display = "block";
-    setTimeout(() => { alertBox.style.display = "none"; }, 3500);    
+    setTimeout(() => { alertBox.style.display = "none"; }, 3500);
   }
+  else if (alertMsg.length > 0) {
+    alertBox.style.display = "block";
+    setTimeout(() => { alertBox.style.display = "none"; }, 3500);
+  } 
 </script>

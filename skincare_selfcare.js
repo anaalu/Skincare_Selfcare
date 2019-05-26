@@ -1,5 +1,4 @@
 require('dotenv').config();
-const cool          = require('cool-ascii-faces')
 const path          = require('path');
 const bodyParser    = require('body-parser');
 const cookieParser  = require('cookie-parser');
@@ -12,7 +11,8 @@ const uuid          = require('uuid');
 const flash         = require('connect-flash');
 
 const User          = require('./routes/users');
-const { Pool }      = require('pg');
+const Database      = require('./routes/db-module');
+const Index         = require('./routes/index');
 const PORT          = process.env.PORT || 5000;
 const app           = express();
 
@@ -27,26 +27,10 @@ var sess = {
   saveUninitialized: true, 
   maxAge: 60000
 }
-
-var pool = null;
-if (process.env.NODE_ENV === 'development') {
-    pool = new Pool({  
-        user: process.env.DB_USER,
-        host: process.env.DB_HOST,
-        database: process.env.DB_DATABASE,
-        password: process.env.DB_PASSWORD,
-        port: process.env.DB_PORT,
-    });
-} else {
-    pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: true
-    });
-    app.set('trust proxy', 1);
-    sess.secure = true;
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+  sess.secure = true;
 }
-
-pool.connect();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -61,65 +45,23 @@ app.use(session(sess));
 app.use(flash());
 
 app.get('/', (req, res) => res.render('pages/index'));
+app.get('/login', Index.getLogin);
+app.get('/signup', Index.getSignup);
+app.get('/demo', Index.getDemo);
+app.get('/temp', Index.getTemp);
 
-app.get('/login', (req, res) => {
-  var message = "";
-  res.render('pages/login', { message: message });
-});
-
-app.get('/signup', (req, res) => {
-  var message = "";
-  res.render('pages/signup', { message: message });
-});
-
-app.get('/demo', (req, res) => res.render('pages/demo'));
-app.get('/temp', (req, res) => {
-  var face = cool();
-  res.render('pages/temp', { face: face });
-});
-
-app.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) { return next(err); }
-    if (!user) {
-      var errorMsg = "User credentials are invalid. Please try again.";
-      return res.render('pages/login', { message: errorMsg });
-    }
-    req.logIn(user, (err) => {
-      if (err) { return next(err); }
-      // TODO: change to correct route when it is complete
-      return res.redirect('/temp');
-    });
-  }) (req, res, next);
-});
-
-app.post('/signup', async (req, res) => {
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
-    pool.query('SELECT id FROM users WHERE email=$1', [req.body.email], (err, result) => {
-      if (result.rows[0]) {
-        var errorMsg = "Email address has already been used. Please use another email."
-        res.render('pages/signup', { message: errorMsg });
-      } else {
-        pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [req.body.email, hash], (err, result) => {
-          if (err) {
-            console.log(err);
-          } else {
-            res.redirect('/login');
-          }
-        });
-      }
-    })
-  });
-});
+app.post('/login', User.login);
+app.post('/signup', User.signup);
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
+// Passportjs configuration
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
   },
   (email, password, callback) =>  {
-  pool.query('SELECT id, email, password FROM users WHERE email=$1', [email], (err, result) => {
+  Database().query('SELECT id, email, password FROM users WHERE email=$1', [email], (err, result) => {
     if (err) {
       // TODO: log error message
       return callback(err);
@@ -145,7 +87,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, callback) => {
-  db.query('SELECT id, email FROM users WHERE id = $1', [parseInt(id, 10)], (err, results) => {
+  Database().query('SELECT id, email FROM users WHERE id = $1', [parseInt(id, 10)], (err, results) => {
     if (err) {
       // TODO: log error message
       return callback(err);
