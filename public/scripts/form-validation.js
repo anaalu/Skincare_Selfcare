@@ -4,10 +4,8 @@ var validateEmail = () => {
 
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     alert.style.display = "none"; 
-    return true;
   } else {
     alert.style.display = "block";
-    return false;
   }
 }
 
@@ -17,10 +15,8 @@ var validatePassword = () => {
 
   if (pass.length < 7) {
     alert.style.display = "block";
-    return false;
   } else { 
     alert.style.display = "none";
-    return true;
   }
 }
 
@@ -31,11 +27,15 @@ var validateRepeatPassword = () => {
 
   if (pass !== passRpt) {
     alert.style.display = "block";
-    return false;
   } else {
     alert.style.display = "none";
-    return true;
   }
+}
+
+var validateAllInputs = () => {
+  validateEmail();
+  validatePassword();
+  validateRepeatPassword();
 }
 
 var validateForm = () => {

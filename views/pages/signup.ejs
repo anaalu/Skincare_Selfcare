@@ -13,11 +13,11 @@
 <form method="post" action="/signup" onsubmit="return validateForm()">
   <div class="login-signup-form-container">
     <div class="center">
-    	<input type="text" placeholder="Enter Email" name="email" onchange="validateEmail()"><br>
+    	<input type="text" placeholder="Enter Email" name="email" onchange="validateAllInputs()"><br>
       <p class="form-error-alert" id="email-alert">The email entered is not valid.</p>
-    	<input type="password" placeholder="Enter Password" name="password" onchange="validatePassword()"><br>
+    	<input type="password" placeholder="Enter Password" name="password" onchange="validateAllInputs()"><br>
       <p class="form-error-alert" id="password-alert">Please enter a password longer than 6 characters.</p>
-    	<input type="password" placeholder="Repeat Password" name="repeat-password" onchange="validateRepeatPassword()">
+    	<input type="password" placeholder="Repeat Password" name="repeat-password" onchange="validateAllInputs()">
       <p class="form-error-alert" id="repeat-password-alert">Passwords do not match.</p>
     	<input type="submit" value="Sign up">
     	<p class="sign-up-redirect">Already have an account? &nbsp;<a class="sign-up-link" href="/login">Log in</a></p>
