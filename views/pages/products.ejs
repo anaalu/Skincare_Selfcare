@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products | Skincare Is Selfcare (｡◕‿‿◕｡)</title>
+</head>
+<body>
+  <% include ../partials/vertical-nav.ejs %>
+  <p class="dashboard-title indent-for-navbar center-text">Add and Edit Products List</p>
+  <div class="dashboard-main-container">
+    <div id="products-list-container" class="float-left">
+      <h2 id="title">Products List</h2>
+      <div class="dropzone" id="products">
+        <div class="item">Clinique Take The Day Off Cleansing Balm</div>
+        <div class="item">CeraVe Hydrating Cleanser</div>
+        <div class="item">The Ordinary Glycolic Acid 7% Toning Solution</div>
+        <div class="item">Caudalie Beauty Elixir</div>
+        <div class="item">Kiehl's Midnight Recovery Concentrate</div>
+        <div class="item">Etude House SoonJung 10 Free Moist Emulsion</div>
+        <div class="item">COSRX Balancium Comfort Ceramide Cream</div>
+      </div>
+    </div>
+
+    <div class="float-left" id="change-products-container">
+      <div class="change-products" id="add-products-container">
+        <p class="small-margin-padding center-text" id="change-products-title">Add a new product</p>
+        <!-- TODO: validate form -->
+        <form method="post" action="/addproduct" onsubmit="return alertMsg()">
+          <input type="text" placeholder="Enter product name"><br>
+          <input type="submit" value="Add Product">
+        </form>
+      </div>
+      <div class="change-products" id="edit-products-container">
+        <p class="small-margin-padding center-text" id="change-products-title">Edit product</p>
+      </div>
+    </div>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
+  <script type="text/javascript">
+    dragula([document.getElementById('products')]);
+
+    var alertMsg = () => {
+      alert("Sorry, this page is still being worked on!")
+      return false;
+    }
+  </script>
+</body>
+</html>

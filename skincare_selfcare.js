@@ -17,12 +17,11 @@ const PORT          = process.env.PORT || 5000;
 const app           = express();
 
 // TODO: look into storing session id in database
-// TDOD: config prod env to provide secret key
 var sess = {
   genid: (req) => {
     return uuid();
   },
-  secret: 'nimbus',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true, 
   maxAge: 60000
@@ -46,9 +45,13 @@ app.use(flash());
 
 app.get('/', (req, res) => res.render('pages/index'));
 app.get('/login', Index.getLogin);
+app.get('/logout', Index.getLogout);
 app.get('/signup', Index.getSignup);
+app.get('/products', Index.getProducts);
 app.get('/demo', Index.getDemo);
 app.get('/temp', Index.getTemp);
+
+app.post('/addproduct', (req, res) => res.render('pages/products'));
 
 app.post('/login', User.login);
 app.post('/signup', User.signup);

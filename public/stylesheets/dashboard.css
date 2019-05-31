@@ -1,6 +1,28 @@
 html, body {
   height: calc(100% - 30px);
 }
+.dashboard-main-container {
+  margin-top: 15px;
+  margin-left: 15%;
+  margin-right: 20%;
+  width: calc(80% - 87px);
+  max-width: 1200px;
+  height: 100%;
+}
+
+.float-left {
+  float: left;
+  margin-right: 5px;
+}
+
+.small-margin-padding {
+  margin: 0px;
+  padding: 5px;
+}
+
+.center-text {
+  text-align: center;
+}
 
 /* ----------- Vertical nav styling ----------- */
 
@@ -49,8 +71,6 @@ h4 {
 
 .column {
   background-color: white;
-  float: left;
-  margin-right: 5px;
   width: calc((100% - 20px) / 4);
   height: 100%;
   overflow: auto;
@@ -103,4 +123,45 @@ input {
   padding: 3px 5px;
   box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
   width: 110px;
+}
+
+/* ----------- Products Page Styling --------- */
+.dashboard-title {
+  padding: 0px;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  margin-left: 87px;
+}
+
+#products-list-container {
+  float: left;
+  background-color: white;
+  height: 100%;
+  width: 50%;
+  overflow: auto;
+}
+
+#change-products-container {
+  background-color: #e5e5e5;
+  position: relative;  height: 100%;
+  width: calc(50% - 10px);
+}
+
+.change-products {
+  background-color: white;
+  height: calc(50% - 5px);
+  width: 100%;
+}
+
+#add-products-container {
+  margin-bottom: 5px;  
+}
+
+#edit-products-container {
+  height: 50%;
+}
+
+#change-products-title {
+  font-weight: bold;
 }
