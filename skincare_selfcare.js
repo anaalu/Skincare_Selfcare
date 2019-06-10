@@ -52,6 +52,7 @@ app.get('/demo', Index.getDemo);
 app.get('/temp', Index.getTemp);
 
 app.post('/addproduct', (req, res) => res.render('pages/products'));
+app.post('/editproduct', (req, res) => res.render('pages/products'));
 
 app.post('/login', User.login);
 app.post('/signup', User.signup);

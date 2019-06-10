@@ -8,15 +8,43 @@
   <p class="dashboard-title indent-for-navbar center-text">Add and Edit Products List</p>
   <div class="dashboard-main-container">
     <div id="products-list-container" class="float-left">
+      <div class="modal" id="remove-product-modal">
+        <div class="modal-content">
+          <p id="modal-message"></p>
+          <input class="float-right" type="submit" name="cancel" value="Cancel" onclick="closeModal()">
+          <input class="float-right" type="submit" name="accept" value="Delete" onclick="removeProductFromList()">
+        </div>
+      </div>
       <h2 id="title">Products List</h2>
       <div class="dropzone" id="products">
-        <div class="item">Clinique Take The Day Off Cleansing Balm</div>
-        <div class="item">CeraVe Hydrating Cleanser</div>
-        <div class="item">The Ordinary Glycolic Acid 7% Toning Solution</div>
-        <div class="item">Caudalie Beauty Elixir</div>
-        <div class="item">Kiehl's Midnight Recovery Concentrate</div>
-        <div class="item">Etude House SoonJung 10 Free Moist Emulsion</div>
-        <div class="item">COSRX Balancium Comfort Ceramide Cream</div>
+        <div class="item">Clinique Take The Day Off Cleansing Balm
+          <span class="closebtn edit-products-btn" onclick="removeProduct(this.parentElement)">&times;</span>
+          <span class="editbtn edit-products-btn" onclick="openEditForm(this.parentElement.innerHTML)">EDIT</span>
+        </div>
+        <div class="item">CeraVe Hydrating Cleanser
+          <span class="closebtn edit-products-btn" onclick="removeProduct(this.parentElement)">&times;</span>
+          <span class="editbtn edit-products-btn" onclick="openEditForm(this.parentElement.innerHTML)">EDIT</span>
+        </div>
+        <div class="item">The Ordinary Glycolic Acid 7% Toning Solution
+          <span class="closebtn edit-products-btn" onclick="removeProduct(this.parentElement)">&times;</span>
+          <span class="editbtn edit-products-btn" onclick="openEditForm(this.parentElement.innerHTML)">EDIT</span>
+        </div>
+        <div class="item">Caudalie Beauty Elixir
+          <span class="closebtn edit-products-btn" onclick="removeProduct(this.parentElement)">&times;</span>
+          <span class="editbtn edit-products-btn" onclick="openEditForm(this.parentElement.innerHTML)">EDIT</span>
+        </div>
+        <div class="item">Kiehl's Midnight Recovery Concentrate
+          <span class="closebtn edit-products-btn" onclick="removeProduct(this.parentElement)">&times;</span>
+          <span class="editbtn edit-products-btn" onclick="openEditForm(this.parentElement.innerHTML)">EDIT</span>
+        </div>
+        <div class="item">Etude House SoonJung 10 Free Moist Emulsion
+          <span class="closebtn edit-products-btn" onclick="removeProduct(this.parentElement)">&times;</span>
+          <span class="editbtn edit-products-btn" onclick="openEditForm(this.parentElement.innerHTML)">EDIT</span>
+        </div>
+        <div class="item">COSRX Balancium Comfort Ceramide Cream
+          <span class="closebtn edit-products-btn" onclick="removeProduct(this.parentElement)">&times;</span>
+          <span class="editbtn edit-products-btn" onclick="openEditForm(this.parentElement.innerHTML)">EDIT</span>
+        </div>
       </div>
     </div>
 
@@ -24,13 +52,19 @@
       <div class="change-products" id="add-products-container">
         <p class="small-margin-padding center-text" id="change-products-title">Add a new product</p>
         <!-- TODO: validate form -->
-        <form method="post" action="/addproduct" onsubmit="return alertMsg()">
-          <input type="text" placeholder="Enter product name"><br>
-          <input type="submit" value="Add Product">
+        <form class="products-form" method="post" action="/addproduct" onsubmit="return alertMsg()">
+          <input class="products-form-input" type="text" name="productname" placeholder="Enter product name"><br>
+          <input type="submit" value="Add Product" onsubmit="addProduct()">
         </form>
       </div>
       <div class="change-products" id="edit-products-container">
         <p class="small-margin-padding center-text" id="change-products-title">Edit product</p>
+        <p id="edit-instruction" style="text-align: center;">Click 'EDIT' on the product you wish to update.</p>
+        <form class="products-form" id="edit-products-form" method="post" action="/editproduct" style="display: none;" onsubmit="return alertMsg()">
+          <input class="products-form-input" id="old-name" name="oldname" type="text" disabled=""><br>
+          <input class="products-form-input" id="new-name" name="newname" type="text" placeholder="Enter product name"><br>
+          <input type="submit" value="Update Product">
+        </form>
       </div>
     </div>
   </div>
@@ -38,10 +72,58 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
   <script type="text/javascript">
     dragula([document.getElementById('products')]);
+      var modal = document.getElementById('remove-product-modal');
+    var toBeRemoved = null;
+
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display='none';
+      }
+    }
 
     var alertMsg = () => {
       alert("Sorry, this page is still being worked on!")
       return false;
+    }
+
+    var addProduct = () => {
+      // TODO: AJAX call to add new product to server
+    }
+
+    var updateProduct = () => {
+      // TODO: AJAX call to update product on server
+    }
+
+    var openEditForm = (innerHTML) => {
+      var product = innerHTML.split("<")[0].trim();
+      var form = document.getElementById('edit-products-form');
+
+      document.getElementById('edit-instruction').style.display='none';
+      document.getElementById('old-name').value = product;
+      form.style.display='block';
+    }
+
+    var removeProduct = (dom) => {
+      var product = dom.innerHTML.split("<")[0].trim();
+      var modalMsg = document.getElementById('modal-message');
+      modalMsg.innerHTML='Are you sure you would like to remove "' + product + '"? <br> Doing so will remove the product from pre-made routines, but old calendar entries with this product will remain in tact.'
+
+      document.getElementById('remove-product-modal').style.display='block';
+      toBeRemoved = dom;
+    }
+
+    var closeModal = () => {
+      modal.style.display='none';
+      toBeRemoved = null;
+    }
+
+    var removeProductFromList = () => {
+      // TODO: AJAX call to remove product from server
+
+      var modalMsg = document.getElementById('modal-message');
+      toBeRemoved.style.display='none';
+      toBeRemoved = null;
+      modal.style.display='none';
     }
   </script>
 </body>

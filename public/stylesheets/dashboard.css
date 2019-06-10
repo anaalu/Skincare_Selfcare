@@ -15,6 +15,12 @@ html, body {
   margin-right: 5px;
 }
 
+.float-right {
+  float: right;
+  padding: 5px;
+  margin: 5px;
+}
+
 .small-margin-padding {
   margin: 0px;
   padding: 5px;
@@ -83,6 +89,7 @@ h4 {
   margin: 5px;
   width: calc(100% - 30px);
   color: white;
+  cursor: pointer;
 }
 
 .dropzone {
@@ -144,8 +151,11 @@ input {
 
 #change-products-container {
   background-color: #e5e5e5;
-  position: relative;  height: 100%;
+  position: relative;  
+  height: 50%;
   width: calc(50% - 10px);
+  min-width: 200px;
+  min-height: 300px;
 }
 
 .change-products {
@@ -154,14 +164,65 @@ input {
   width: 100%;
 }
 
+.products-form {
+  margin-top: 5%;
+  margin-left: 10%;
+}
+
+.products-form-input {
+  width: 80%;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.edit-products-btn {
+  float: right;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: none;
+  background-color: midnightblue;
+  margin-right: 3px;
+  opacity: 0.5;
+  font-size: x-small;
+}
+
+.item:hover .edit-products-btn {
+  display: block;
+}
+
 #add-products-container {
   margin-bottom: 5px;  
 }
 
 #edit-products-container {
-  height: 50%;
+  height: 60%;
+  /*display: none;*/
 }
 
 #change-products-title {
   font-weight: bold;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  height: 110px;
 }
