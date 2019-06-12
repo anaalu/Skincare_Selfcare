@@ -16,7 +16,7 @@ exports.getSignup = (req, res) => {
 }
 
 exports.getProducts = (req, res) => {
-  res.render('pages/products');
+  res.render('pages/demo_products');
 }
 
 exports.getDemo = (req, res) => {

@@ -47,12 +47,12 @@ app.get('/', (req, res) => res.render('pages/index'));
 app.get('/login', Index.getLogin);
 app.get('/logout', Index.getLogout);
 app.get('/signup', Index.getSignup);
-app.get('/products', Index.getProducts);
+app.get('/demo_products', Index.getProducts);
 app.get('/demo', Index.getDemo);
 app.get('/temp', Index.getTemp);
 
-app.post('/addproduct', (req, res) => res.render('pages/products'));
-app.post('/editproduct', (req, res) => res.render('pages/products'));
+app.post('/addproduct', (req, res) => res.render('pages/demo_products'));
+app.post('/editproduct', (req, res) => res.render('pages/demo_products'));
 
 app.post('/login', User.login);
 app.post('/signup', User.signup);
