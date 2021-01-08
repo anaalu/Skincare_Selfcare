@@ -226,3 +226,29 @@ input {
   width: 40%;
   height: 110px;
 }
+
+
+/* ----------- util styles ----------- */
+.p-abs {
+  position: absolute;
+}
+
+.p-rel {
+  position: relative;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.center-vertical {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

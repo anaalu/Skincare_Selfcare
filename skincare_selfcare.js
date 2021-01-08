@@ -51,6 +51,8 @@ app.get('/demo_products', Index.getProducts);
 app.get('/demo', Index.getDemo);
 app.get('/temp', Index.getTemp);
 
+app.post('/demo_addproduct', (req, res) => res.render('pages/demo'));
+
 app.post('/addproduct', (req, res) => res.render('pages/demo_products'));
 app.post('/editproduct', (req, res) => res.render('pages/demo_products'));
 

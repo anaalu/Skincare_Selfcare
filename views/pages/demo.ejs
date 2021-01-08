@@ -19,7 +19,9 @@
 <div id="table">
 
   <div class="column float-left">
-    <h2 id="title">Products List</h2>
+    <h2 id="title" class="p-rel">Products List
+      <button class="closebtn center-vertical" style="right: 0" onclick="openAddProductModal(this.parentElement)">+</button>
+    </h2>
     <div class="dropzone" id="products">
       <div class="item">Clinique Take The Day Off Cleansing Balm</div>
       <div class="item">CeraVe Hydrating Cleanser</div>
@@ -28,6 +30,18 @@
       <div class="item">Kiehl's Midnight Recovery Concentrate</div>
       <div class="item">Etude House SoonJung 10 Free Moist Emulsion</div>
       <div class="item">COSRX Balancium Comfort Ceramide Cream</div>
+    </div>
+  </div>
+
+  <div class="modal">
+    <div class="modal-content">
+      <button class="closebtn p-abs" id="modal-close-btn" onclick="closeAddProductModal()">&times;</button>
+      <span class="small-margin-padding center-text d-inline-block w-100" id="change-products-title">Add a new product</span>
+      <!-- TODO: validate form -->
+      <form id="new-product-form" class="products-form" method="post" action="/demo_addproduct" onsubmit="return addProduct()">
+        <input class="products-form-input" type="text" id="new-product-name" name="productname" placeholder="Enter product name"><br>
+        <input type="submit" value="Add Product" onsubmit="addProduct()">
+      </form>
     </div>
   </div>
 
@@ -64,6 +78,47 @@
     },
     removeOnSpill: true
   });
+
+  let modalBtn = document.getElementById("modal-btn")
+  let modal = document.querySelector(".modal")
+  let closeBtn = document.getElementById("modal-close-btn")
+
+  var openAddProductModal = function() {
+    modal.style.display = "block"
+  }
+
+  var closeAddProductModal = () => {
+    modal.style.display='none';
+  }
+  
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.style.display='none';
+    }
+  }
+
+  var addProduct = () => {
+  // TODO: AJAX call to add new product to server
+    var prodList = document.getElementById('products');
+    var newProd = createNewProduct();
+    prodList.appendChild(newProd);
+
+    closeAddProductModal()
+
+    document.getElementById('new-product-name').value = '';
+
+    return false;
+  }
+
+var createNewProduct = () => {
+  var name = document.getElementById('new-product-name').value;
+  var newProd = document.createElement("div");
+
+  newProd.setAttribute('class', 'item');
+  newProd.textContent = name;
+
+  return newProd;
+}
 </script>
 
 </body>
