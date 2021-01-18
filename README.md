@@ -9,10 +9,11 @@
     - [PostgreSQL](#postgresql)
     - [Javascript](#javascript)
     - [Heroku](#heroku)
+    - [Other References](#other-refs)
 
 
 ## Getting Started
-* Create a `.env` file with the following:
+* Create a `.env` file with the following (set whatever you'd like for `DB_USER` ask someone for `SESSION_SECRET`):
 ```
 NODE_ENV=development
 DB_USER= anything you want
@@ -26,10 +27,7 @@ SESSION_SECRET= ask someone for this
 ### PostgreSQL
 This part has to be completed otherwise the code will not run!
 
-* Install PostgreSQL following the steps for your particular OS:
-    * Mac: https://www.robinwieruch.de/postgres-sql-macos-setup
-    * Linux: ?
-    * Windows: ?
+* Install PostgreSQL: https://www.postgresql.org/download/
 
 * Initialize a database with properties as specified in the `.env` file above and create the following tables:
 ```sql
@@ -57,9 +55,12 @@ CREATE TABLE "products" (
 yarn install
 yarn start
 ```
-Open your browser to http://localhost:5000/ and you should see the same landing page as the one deployed on Heroku.
+Open your browser to http://localhost:5000/ and you should see the same landing page as the one deployed on Heroku. Make sure you have PostgreSQL running beforehand, otherwise you will see an error when trying to run the app.
 
 
 ### Heroku
 * Nothing yet.
 
+
+### Other References
+- https://blog.logrocket.com/nodejs-expressjs-postgresql-crud-rest-api-example/
